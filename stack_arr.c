@@ -1,7 +1,7 @@
 #include <stdlib.h>
 
 typedef struct Stack {
-    int vals[1000000];
+    int vals[10000000];
     int size;
 } Stack;
 

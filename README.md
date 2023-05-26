@@ -1,15 +1,15 @@
 ```shell
 $ clang --include stack_list.c main.c && ./a.out
-Push:     349
-Pop:      456
-Iter v1:  27
-Iter v2:  191
+Push:     3518
+Pop:      4675
+Iter v1:  265
+Iter v2:  11537
 ```
 
 ```shell
 $ clang --include stack_arr.c main.c && ./a.out
-Push:     165
-Pop:      41
-Iter v1:  19
-Iter v2:  19
+Push:     1519
+Pop:      424
+Iter v1:  196
+Iter v2:  208
 ```

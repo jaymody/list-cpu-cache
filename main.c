@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <time.h>
 
-const int N_ELEMENTS = 20000;
-const int N_REPEAT = 1000;
+const int N_ELEMENTS = 200000;
+const int N_REPEAT = 100;
 
 void test() {
     Stack *stack = new_stack();
