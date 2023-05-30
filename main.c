@@ -65,21 +65,20 @@ clock_t benchmark_iter_v2() {
     return clock() - start;
 }
 
-clock_t run_benchmark(clock_t (*example_fn)()) {
+double run_benchmark(clock_t (*example_fn)()) {
     clock_t total_elapsed = 0;
     for (int i = 0; i < N_REPEAT; i++) {
         total_elapsed += example_fn();
     }
-    return total_elapsed / N_REPEAT;
-    printf("%lu\n", total_elapsed / N_REPEAT);
+    return (double)(total_elapsed) / (double)(N_REPEAT) / (double)(CLOCKS_PER_SEC)*1000;
 }
 
 /* main code */
 int main() {
     srand(time(NULL));
     test();
-    printf("Push:     %lu\n", run_benchmark(benchmark_push));
-    printf("Pop:      %lu\n", run_benchmark(benchmark_pop));
-    printf("Iter v1:  %lu\n", run_benchmark(benchmark_iter_v1));
-    printf("Iter v2:  %lu\n", run_benchmark(benchmark_iter_v2));
+    printf("Push:     %.3f ms\n", run_benchmark(benchmark_push));
+    printf("Pop:      %.3f ms\n", run_benchmark(benchmark_pop));
+    printf("Iter v1:  %.3f ms\n", run_benchmark(benchmark_iter_v1));
+    printf("Iter v2:  %.3f ms\n", run_benchmark(benchmark_iter_v2));
 }
