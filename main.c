@@ -18,7 +18,7 @@ void test() {
     assert(pop(stack) == 2);
 }
 
-clock_t example1() {
+clock_t benchmark_push() {
     Stack *stack = new_stack();
     clock_t start = clock();
     for (int i = 0; i < N_ELEMENTS; i++) {
@@ -27,7 +27,7 @@ clock_t example1() {
     return clock() - start;
 }
 
-clock_t example2() {
+clock_t benchmark_pop() {
     Stack *stack = new_stack();
     for (int i = 0; i < N_ELEMENTS; i++) {
         push(stack, rand());
@@ -39,7 +39,7 @@ clock_t example2() {
     return clock() - start;
 }
 
-clock_t example3() {
+clock_t benchmark_iter_v1() {
     Stack *stack = new_stack();
     for (int i = 0; i < N_ELEMENTS; i++) {
         push(stack, rand());
@@ -50,7 +50,7 @@ clock_t example3() {
     return clock() - start;
 }
 
-clock_t example4() {
+clock_t benchmark_iter_v2() {
     Stack *stack = new_stack();
     Stack *other = new_stack();
     for (int i = 0; i < N_ELEMENTS; i++) {
@@ -65,7 +65,7 @@ clock_t example4() {
     return clock() - start;
 }
 
-clock_t run_example(clock_t (*example_fn)()) {
+clock_t run_benchmark(clock_t (*example_fn)()) {
     clock_t total_elapsed = 0;
     for (int i = 0; i < N_REPEAT; i++) {
         total_elapsed += example_fn();
@@ -78,8 +78,8 @@ clock_t run_example(clock_t (*example_fn)()) {
 int main() {
     srand(time(NULL));
     test();
-    printf("Push:     %lu\n", run_example(example1));
-    printf("Pop:      %lu\n", run_example(example2));
-    printf("Iter v1:  %lu\n", run_example(example3));
-    printf("Iter v2:  %lu\n", run_example(example4));
+    printf("Push:     %lu\n", run_benchmark(benchmark_push));
+    printf("Pop:      %lu\n", run_benchmark(benchmark_pop));
+    printf("Iter v1:  %lu\n", run_benchmark(benchmark_iter_v1));
+    printf("Iter v2:  %lu\n", run_benchmark(benchmark_iter_v2));
 }
